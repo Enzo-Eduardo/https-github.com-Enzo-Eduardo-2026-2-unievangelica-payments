@@ -16,8 +16,9 @@ jobs:
           BRANCH="${{ github.head_ref }}"
           echo "Branch recebida: $BRANCH"
 
-          # Padrão aceito: (pratica11|lab11|lab11-extra)/NomeSobrenome-Matricula
-          if [[ "$BRANCH" =~ ^(pratica11|lab11|lab11-extra)/.+$ ]]; then
+          # Padrão aceito: pratica11/NomeSobrenome-Matricula  (atividade principal)
+          #               lab11-extra/NomeSobrenome-Matricula  (lab avançado)
+          if [[ "$BRANCH" =~ ^(pratica11|lab11-extra)/.+$ ]]; then
             echo "✅ Branch válida: $BRANCH"
             echo "branch_ok=true" >> $GITHUB_OUTPUT
           else
@@ -47,6 +48,6 @@ jobs:
             echo "✅ PR válido!"
             exit 0
           else
-            echo "❌ PR inválido. Verifique se a branch começa com pratica11/, lab11/ ou lab11-extra/ e se o título menciona aula 11."
+            echo "❌ PR inválido. Verifique se a branch começa com pratica11/ (atividade) ou lab11-extra/ (bonus) e se o título menciona aula 11."
             exit 1
           fi
